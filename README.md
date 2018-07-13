@@ -1,2 +1,21 @@
-# cardio-meta
-Meta-analysis of cardiovascular complications of testosterone therapy for hypogonadism
+# Problems with meta-analyses: cardiovascular complications of testosterone therapy for hypogonadism
+
+Supplemental material for a manuscript by Stanley G. Korenman and Nick Wisniewski.
+
+## Background
+
+Metanalyses have grown exponentially in number since their emergence in the late 1970s. They are considered to be at the apex of systematic reviews that support evidence-based medicine in that -- in theory -- they provide more precise estimates of the effects of a treatment or the risk factors for a condition. However, meta-analyses remain subject to many problems that include heterogeneity of the populations involved or the methods of reporting as well as inappropriate selection of studies to include. Meta-analysis issues can have serious effects on evidence-based medicine and clinical practice, which is the subject of this investigation.
+
+Following three controversial publications suggesting that there were adverse cardiovascular complications of treatment of male hypogonadism with replacement levels of testosterone, a large number of studies were carried out either to validate or deny those conclusions. Randomized clinical trials were aggregated into a number of metanalyses, two of which supported the cardiovascular contentions. Since we were curious as to how the conclusions were reached, we decided to examine a few metanalyses and became aware of what we consider to be a persistent weakness of metanalyses in general.
+
+We found that while the search strategy for identifying all studies from which the relevant data were drawn was very broad, utilizing the available databases and many search terms, the process of selecting those few to be utilized in the analysis, was subjective and arbitrary. Furthermore, we identified three papers whose subjects deviated from the population that normally would be considered for testosterone replacement therapy, and found no statistical support for the adverse effects of testosterone on cardiovascular adverse events upon reanalysis of the two meta-analyses that made use of them. 
+
+## Methods
+
+Our meta-analysis involved many low event-rate trials, and there is currently considerable variation among methods used in published meta-analyses involving low event-rate studies. This creates an addition layer of variability, on top of the variability due to study selection criteria, when comparing the set of meta-analyses considered in this paper. For example, one method uses a fixed effects meta-regression with inverse variance weights, which is known to give spurious results for low event-rates. Another attempts to correct this problem by using a sample size weighted random effects method developed by Shuster. Another uses a similar sample size weighted random effects model, but with continuity corrections for trials with zero events which are generally considered ad-hoc and arbitrary. Another two use Mantel-Haenszel methods, also with continuity corrections. 
+
+Our aim here was to assess the variability due to selection criteria, and not to contest the statistical methods used in any of the above papers. Therefore, in assessing the effect of removing the three studies from each of the meta-analyses, we used a single method to reanalyze them all. Additionally, we chose to use a method not used in any of the previous studies: we used the `metafor` R package, which performs a mixed effects conditional Poisson regression based on the method of Stijnen. 
+
+The method of Stijnen makes use of the exact within-studies likelihood, unlike the methods used in the other papers. This approach completely avoids the use of arbitrary continuity corrections, avoids the bias caused by correlation between the effect size and standard error, and produces more realistic standard errors. Additionally, this method allows easy inclusion of moderators within the mixed-effect framework, which is useful in our studies since Borst and Xu analyze the effect of modality (injection, gel, oral) on the mortality risk. 
+
+Finally, because the number of studies included in each of these meta-analyses is quite limited, we specified that test statistics and confidence intervals should be based on the more conservative t-distribution instead of the normal approximation.
